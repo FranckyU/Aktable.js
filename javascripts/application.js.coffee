@@ -1,21 +1,25 @@
 $ ->
-  # happy coffee time !
+  recordEvent = (_eventName, _element) ->
+    return true
 
-  rounds = 0
+  $("*").click(e) ->
+    recordEvent "click", e
 
-  changeTextOf = (e, index) ->
+  $("*").hover(e) ->
+    recordEvent "hover", e
 
-    prefix =  if (rounds+index+1).toString().match(/.*1$/)
-                "st"
-              else if (rounds+index+1).toString().match(/.*2$/)
-                "nd"
-              else
-                "th"
+  $("*").mouseenter(e) ->
+    recordEvent "mouseenter", e
 
-    e.html("Have a good time for the " + (rounds+index+1) + prefix + " time !")
-    
-    rounds += 1 if index%2 is 1  
+  $("*").mouseleave(e) ->
+    recordEvent "mouseleave", e
 
-  $("#lnk").click (e) ->
-    changeTextOf $(elem), index for elem, index in $("h1")
+  $("*").mouseover(e) ->
+    recordEvent "mouseover", e
+
+  $("input, textarea").change(e) ->
+    recordEvent "change", e
+
+  $(document.body).scroll(e) ->
+    recordEvent "scroll", e
   

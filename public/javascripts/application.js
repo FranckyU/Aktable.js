@@ -1,29 +1,51 @@
 (function() {
   $(function() {
-    var recordEvent;
-    recordEvent = function(_eventName, _element) {
+    var eventStore, pushToServer, recordEvent;
+    eventStore = [];
+    pushToServer = function() {
+      var ajaxNotificationData;
+      ajaxNotificationData = {
+        url: "http://127.0.0.1:3000/aktable-push/uqs546vcds4E342",
+        dataType: 'json',
+        data: {
+          eventLog: eventStore
+        }
+      };
+      $.ajax(ajaxNotificationData);
+      eventStore = [];
       return true;
     };
-    $("*").click(e)(function() {
-      return recordEvent("click", e);
+    recordEvent = function(_eventName, _element) {
+      var eventRecord;
+      eventRecord = {
+        eventType: _eventName,
+        elementId: $(_element).attr("id"),
+        elementContent: $(_element).html(),
+        eventFiredAt: new Date().getTime()
+      };
+      eventStore.push(eventRecord);
+      if (eventStore.length === 100) {
+        pushToServer();
+      }
+      return true;
+    };
+    $(".aktable-click").click(function() {
+      return recordEvent("click", this);
     });
-    $("*").hover(e)(function() {
-      return recordEvent("hover", e);
+    $(".aktable-hover").hover(function() {
+      return recordEvent("hover", this);
     });
-    $("*").mouseenter(e)(function() {
-      return recordEvent("mouseenter", e);
+    $(".aktable-mouseenter").mouseenter(function() {
+      return recordEvent("mouseenter", this);
     });
-    $("*").mouseleave(e)(function() {
-      return recordEvent("mouseleave", e);
+    $(".aktable-mouseleave").mouseleave(function() {
+      return recordEvent("mouseleave", this);
     });
-    $("*").mouseover(e)(function() {
-      return recordEvent("mouseover", e);
+    $(".aktable-mouseover").mouseover(function() {
+      return recordEvent("mouseover", this);
     });
-    $("input, textarea").change(e)(function() {
-      return recordEvent("change", e);
-    });
-    return $(document.body).scroll(e)(function() {
-      return recordEvent("scroll", e);
+    return $(".aktable-change").change(function() {
+      return recordEvent("change", this);
     });
   });
 

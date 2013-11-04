@@ -1,1 +1,1 @@
-# Know ho visitor use your web app
+# Know how visitors use your web app with Aktable.js

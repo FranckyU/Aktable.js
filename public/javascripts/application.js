@@ -12,8 +12,7 @@
         }
       };
       $.ajax(ajaxNotificationData);
-      eventStore = [];
-      return true;
+      return eventStore = [];
     };
     recordEvent = function(_eventName, _element) {
       var eventRecord;
@@ -25,27 +24,32 @@
       };
       eventStore.push(eventRecord);
       if (eventStore.length === 100) {
-        pushToServer();
+        return pushToServer();
       }
-      return true;
     };
     $(".aktable-click").click(function() {
-      return recordEvent("click", this);
+      recordEvent("click", this);
+      return false;
     });
     $(".aktable-hover").hover(function() {
-      return recordEvent("hover", this);
+      recordEvent("hover", this);
+      return false;
     });
     $(".aktable-mouseenter").mouseenter(function() {
-      return recordEvent("mouseenter", this);
+      recordEvent("mouseenter", this);
+      return false;
     });
     $(".aktable-mouseleave").mouseleave(function() {
-      return recordEvent("mouseleave", this);
+      recordEvent("mouseleave", this);
+      return false;
     });
     $(".aktable-mouseover").mouseover(function() {
-      return recordEvent("mouseover", this);
+      recordEvent("mouseover", this);
+      return false;
     });
     return $(".aktable-change").change(function() {
-      return recordEvent("change", this);
+      recordEvent("change", this);
+      return false;
     });
   });
 

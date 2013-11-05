@@ -1,1 +1,2 @@
-# Know how visitors use your web app with Aktable.js
+Behaviour analytics made easy !
+==============================

@@ -13,8 +13,6 @@ $ ->
 
     eventStore = []
 
-    return true
-
 
 
   recordEvent = (_eventName, _element) ->
@@ -30,25 +28,29 @@ $ ->
 
     pushToServer() if eventStore.length == 100
 
-    return true
-
 
 
   $(".aktable-click").click ->
     recordEvent "click", this
+    return false
 
   $(".aktable-hover").hover ->
     recordEvent "hover", this
+    return false
 
   $(".aktable-mouseenter").mouseenter ->
     recordEvent "mouseenter", this
+    return false
 
   $(".aktable-mouseleave").mouseleave ->
     recordEvent "mouseleave", this
+    return false
 
   $(".aktable-mouseover").mouseover ->
     recordEvent "mouseover", this
+    return false
 
   $(".aktable-change").change ->
     recordEvent "change", this
+    return false
   
